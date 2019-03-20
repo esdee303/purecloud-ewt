@@ -17,19 +17,17 @@ var port = process.env.PORT;
 
 app.use(bodyParser.json());
 
-app.post('/ewts', authenticate, (req, res) => {
-    var ewt = new Ewt({
-        realWaitingTime: req.body.realWaitingTime,
-        estWaitingTime: req.body.estWaitingTime,
-        conversationId: req.body.conversationId,
-        waitingInQueue: req.body.waitingInQueue,
-        sender: req.body.sender
-    });
-    ewt.save().then((doc) => {
-        res.send(doc);
-    }, (e) => {
+app.post('/ewts', (req, res) => {
+    var body = _.pick(req.body, ['realWaitingTime', 'estWaitingTime',
+'conversationId', 'waitingInQueue', 'sender']);
+    var ewt = new Ewt(body);
+    ewt.save().then(() => {
+        return ewt.generateAuthToken();
+    }).then((token) => {
+        res.header('x-auth', token).send(ewt);    
+    }).catch((e) => {
         res.status(400).send(e);
-    });
+    })
 });
 
 app.get('/ewts', authenticate, (req, res) => {
