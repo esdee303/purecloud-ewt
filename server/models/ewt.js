@@ -9,25 +9,41 @@ var EwtSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    callAni: {
+        type:String,
+        required:false
+    },
+    calledAddressOriginal: {
+        type:String,
+        required:false
+    },
     interactionId: {
         type: String,
         required: true
     }, 
-    queue: {
+    callCurrentQueue: {
         type: String,
         required: true
     },
     realWaitTime: {
-        type: String,
-        required: true
+        type:String,
+        required:false
     },
-    estWaitTime: {
-        type: String,
-        required: true
+    callEstWaitTime: {
+        type:String,
+        required:false
     },
-    positionInQueue: {
+    callPositionInQueue: {
         type: Number,
         required: true
+    },
+    callLanguage: {
+        type: String,
+        required: false
+    },
+    success: {
+        type: Boolean,
+        required: false
     },
     tokens: [{
         access: {
@@ -43,8 +59,9 @@ var EwtSchema = new mongoose.Schema({
 
 EwtSchema.methods.toJSON = function() {
     var ewt = this;
+    ewt.success = true;
     var ewtObject = ewt.toObject();
-    return _.pick(ewtObject, ['_id', 'callStartDateTime','interactionId','queue','realWaitTime','estWaitTime','positionInQueue']);
+    return _.pick(ewtObject, ['_id', 'success']);
 };
 
 EwtSchema.methods.generateAuthToken = function() {
