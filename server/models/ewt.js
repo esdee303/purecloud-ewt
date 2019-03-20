@@ -10,11 +10,11 @@ var EwtSchema = new mongoose.Schema({
         required: true
     },
     callAni: {
-        type:String,
+        type: String,
         required:false
     },
     calledAddressOriginal: {
-        type:String,
+        type: String,
         required:false
     },
     interactionId: {
@@ -30,6 +30,10 @@ var EwtSchema = new mongoose.Schema({
         required:false
     },
     callEstWaitTime: {
+        type:String,
+        required:false
+    },
+    apiEstWaitTimeInSeconds: {
         type:String,
         required:false
     },
