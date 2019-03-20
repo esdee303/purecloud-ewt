@@ -3,3 +3,5 @@ mongodb-manual.txt
 git-man.txt
 server/config/config.json
 img/
+server/server.jsbak
+server/middleware/authenticate.jsbak

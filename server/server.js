@@ -18,8 +18,7 @@ var port = process.env.PORT;
 app.use(bodyParser.json());
 
 app.post('/ewts', (req, res) => {
-    var body = _.pick(req.body, ['realWaitingTime', 'estWaitingTime',
-'conversationId', 'waitingInQueue', 'sender']);
+    var body = _.pick(req.body, ['callStartDateTime','interactionId','queue','realWaitTime','estWaitTime','positionInQueue']);
     var ewt = new Ewt(body);
     ewt.save().then(() => {
         return ewt.generateAuthToken();

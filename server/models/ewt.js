@@ -5,24 +5,28 @@ const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
 var EwtSchema = new mongoose.Schema({
-    realWaitingTime: {
+    callStartDateTime: {
         type: String,
         required: true
     },
-    estWaitingTime: {
+    interactionId: {
+        type: String,
+        required: true
+    }, 
+    queue: {
         type: String,
         required: true
     },
-    conversationId: {
+    realWaitTime: {
         type: String,
         required: true
     },
-    waitingInQueue: {
+    estWaitTime: {
+        type: String,
+        required: true
+    },
+    positionInQueue: {
         type: Number,
-        required: false
-    },
-    sender: {
-        type: String,
         required: true
     },
     tokens: [{
@@ -40,7 +44,7 @@ var EwtSchema = new mongoose.Schema({
 EwtSchema.methods.toJSON = function() {
     var ewt = this;
     var ewtObject = ewt.toObject();
-    return _.pick(ewtObject, ['_id', 'realWaitingTime', 'estWaitingTime', 'conversationId', 'waitingInQueue', 'sender']);
+    return _.pick(ewtObject, ['_id', 'callStartDateTime','interactionId','queue','realWaitTime','estWaitTime','positionInQueue']);
 };
 
 EwtSchema.methods.generateAuthToken = function() {
