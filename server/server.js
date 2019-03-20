@@ -30,15 +30,6 @@ app.post('/ewts', (req, res) => {
     })
 });
 
-app.get('/ewts', authenticate, (req, res) => {
-   Ewt.find({
-       sender: req.body.sender
-   }).then((ewts) => {
-       res.send({ewts});
-   }, (e) => {
-       res.status(040).send();
-   });
-});
 
 if(!module.parent) {
     app.listen(port,() => {

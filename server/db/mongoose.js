@@ -17,7 +17,7 @@ mongoose.Promise = global.Promise;
 */
 
 mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true, }, function(error) {
-      // console.log(error);
+       console.log(error);
 });
 
 
