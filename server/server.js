@@ -50,7 +50,18 @@ app.get('/ewts/:interactionId', (req, res) => {
     });
 });
 
-app.get('/allEwts/:calledAddress', (req,res) => {
+app.get('/ewtsInt/:interactionId', (req, res) => {
+    var id = req.params.interactionId;
+    Ewt.find({
+       interactionId: id
+    }).then((ewts) => {
+      res.send({ewts});
+    }, (e) => {
+        res.status(400).send(e);
+    });
+});
+
+/* app.get('/allEwts/:calledAddress', (req,res) => {
     var calledAddress = req.params.calledAddress;
     Ewt.find({
         calledAddressOriginal : calledAddress
@@ -59,7 +70,7 @@ app.get('/allEwts/:calledAddress', (req,res) => {
     }, (e) => {
         res.status(400).send(e);
     });
-});
+});  */
 
 
 if(!module.parent) {
