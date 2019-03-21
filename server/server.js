@@ -50,6 +50,17 @@ app.get('/ewts/:interactionId', (req, res) => {
     });
 });
 
+app.get('/allEwts/:success', (req,res) => {
+    var suc = req.params.success;
+    Ewt.find({
+        success = suc
+    }).then((ewts) => {
+        res.send({ewts});
+    }, (e) => {
+        res.status(400).send(e);
+    });
+});
+
 
 if(!module.parent) {
     app.listen(port,() => {
