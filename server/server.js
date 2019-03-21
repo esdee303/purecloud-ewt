@@ -50,10 +50,9 @@ app.get('/ewts/:interactionId', (req, res) => {
     });
 });
 
-app.get('/allEwts/:success', (req,res) => {
-    var suc = req.params.success;
+app.get('/allEwts/', (req,res) => {
     Ewt.find({
-        success = suc
+        success = true
     }).then((ewts) => {
         res.send({ewts});
     }, (e) => {
