@@ -65,7 +65,20 @@ EwtSchema.methods.toJSON = function() {
     var ewt = this;
     ewt.success = true;
     var ewtObject = ewt.toObject();
-    return _.pick(ewtObject, ['_id', 'success']);
+    return _.pick(
+        ewtObject, 
+        ['_id', 
+        'success',
+        'callStartDateTime',
+        'callAni', 
+        'calledAddressOriginal', 
+        'interactionId',
+        'callCurrentQueue',
+        'realWaitTime',
+        'callEstWaitTime',
+        'apiEstWaitTimeInSeconds',
+        'callPositionInQueue', 
+        'callLanguage']);
 };
 
 EwtSchema.methods.generateAuthToken = function() {
