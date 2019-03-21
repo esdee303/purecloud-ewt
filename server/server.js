@@ -50,10 +50,10 @@ app.get('/ewts/:interactionId', (req, res) => {
     });
 });
 
-app.get('/ewtsInt/:interactionId', (req, res) => {
-    var id = req.params.interactionId;
+app.get('/ewtsQueue/:queue', (req, res) => {
+    var queue = req.params.queue;
     Ewt.find({
-       interactionId: id
+        callCurrentQueue: queue
     }).then((ewts) => {
       res.send({ewts});
     }, (e) => {
