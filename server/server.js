@@ -52,7 +52,7 @@ app.get('/ewts/:interactionId', (req, res) => {
 
 app.get('/allEwts/', (req,res) => {
     Ewt.find({
-        success = true
+        success : true
     }).then((ewts) => {
         res.send({ewts});
     }, (e) => {
