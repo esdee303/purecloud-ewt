@@ -6,8 +6,6 @@ const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
 
 var {mongoose} = require('./db/mongoose.js');
-var {Todo} = require('./models/todo.js');
-var {User} = require('./models/user.js');
 var {Ewt} = require('./models/ewt.js');
 
 var {authenticate} = require('./middleware/authenticate');
@@ -39,6 +37,17 @@ app.post('/ewts', (req, res) => {
     }).catch((e) => {
         res.status(400).send(e);
     })
+});
+
+app.get('/ewts/:interactionId', (req, res) => {
+    var id = req.params.interactionId;
+    Ewt.find({
+       interactionId: id
+    }).then((ewts) => {
+      res.send({ewts});
+    }, (e) => {
+        res.status(400).send(e);
+    });
 });
 
 
