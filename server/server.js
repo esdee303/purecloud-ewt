@@ -50,9 +50,10 @@ app.get('/ewts/:interactionId', (req, res) => {
     });
 });
 
-app.get('/allEwts/', (req,res) => {
+app.get('/allEwts/:calledAddress', (req,res) => {
+    var calledAddress = req.params.calledAddress;
     Ewt.find({
-        success : true
+        calledAddressOriginal : calledAddress
     }).then((ewts) => {
         res.send({ewts});
     }, (e) => {
