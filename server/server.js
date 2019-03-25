@@ -18,7 +18,8 @@ app.use(bodyParser.json());
 app.post('/ewts', (req, res) => {
     var body = _.pick(
         req.body, 
-        ['callStartDateTime',
+        ['timestamp',
+        'callStartDateTime',
         'callAni', 
         'calledAddressOriginal', 
         'interactionId',
@@ -27,7 +28,15 @@ app.post('/ewts', (req, res) => {
         'callEstWaitTime',
         'apiEstWaitTimeInSeconds',
         'callPositionInQueue', 
-        'callLanguage']);
+        'callLanguage',
+        'flowLocation',
+        'agentsOnQueue',
+        'agentsInteracting',
+        'agentsIdle',
+        'agentsCommunicating',
+        'agentsNotResponding',
+        'agentsOffQueue'
+    ]);
     
     var ewt = new Ewt(body);
     ewt.save().then(() => {

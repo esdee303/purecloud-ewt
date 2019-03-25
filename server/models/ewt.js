@@ -5,6 +5,10 @@ const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
 var EwtSchema = new mongoose.Schema({
+    timestamp: {
+        type: String,
+        required: true
+    },
     callStartDateTime: {
         type: String,
         required: true
@@ -45,6 +49,34 @@ var EwtSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    flowLocation: {
+        type: String,
+        required: false
+    },
+    agentsOnQueue: {
+        type: String,
+        required: false
+    },
+    agentsInteracting: {
+        type: String,
+        required: false
+    },
+    agentsIdle: {
+        type: String,
+        required: false
+    },
+    agentsCommunicating: {
+        type: String,
+        required: false
+    },
+    agentsNotResponding: {
+        type: String,
+        required: false
+    },
+    agentsOffQueue: {
+        type: String,
+        required: false
+    },
     success: {
         type: Boolean,
         required: false
@@ -69,6 +101,7 @@ EwtSchema.methods.toJSON = function() {
         ewtObject, 
         ['_id', 
         'success',
+        'timestamp',
         'callStartDateTime',
         'callAni', 
         'calledAddressOriginal', 
@@ -78,7 +111,15 @@ EwtSchema.methods.toJSON = function() {
         'callEstWaitTime',
         'apiEstWaitTimeInSeconds',
         'callPositionInQueue', 
-        'callLanguage']);
+        'callLanguage',
+        'flowLocation',
+        'agentsOnQueue',
+        'agentsInteracting',
+        'agentsIdle',
+        'agentsCommunicating',
+        'agentsNotResponding',
+        'agentsOffQueue'
+    ]);
 };
 
 EwtSchema.methods.generateAuthToken = function() {

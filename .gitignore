@@ -5,3 +5,4 @@ server/config/config.json
 img/
 server/server.jsbak
 server/middleware/authenticate.jsbak
+docs/
